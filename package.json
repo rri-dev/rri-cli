@@ -5,13 +5,21 @@
   "types": "src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npm run build && node dist/index.js",
     "build": "tsc -p ."
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cli"
+  ],
+  "author": "RRI Dev Team",
   "license": "ISC",
-  "description": "",
+  "description": "CLI program to create a starter template for APIs, Packages, or Microservices",
   "dependencies": {
+    "chalk": "^5.4.1",
+    "inquirer": "^12.5.2",
     "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0"
   }
 }
