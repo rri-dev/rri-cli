@@ -1,13 +1,22 @@
 {
   "name": "rri-cli",
-  "version": "1.0.5",
+  "version": "1.0.1010",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run build && node dist/index.js",
-    "build": "tsc -p ."
+    "dev": "rm -rf dist && npm run build && node dist/index.js",
+    "build": "tsc -p .",
+    "postinstall": "node postinstall.js"
   },
+  "bin": {
+    "rri-cli": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "src/templates",
+    "postinstall.js"
+  ],
   "keywords": [
     "cli"
   ],

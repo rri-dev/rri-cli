@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { select, Separator } from '@inquirer/prompts';
 import { RriCli } from './rri-cli';
 
@@ -14,7 +15,6 @@ async function run() {
                 new Separator()
             ],
         });
-        console.log('You selected:', answer);
 
         switch (answer) {
             case "api":
