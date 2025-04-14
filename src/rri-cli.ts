@@ -12,18 +12,27 @@ export class RriCli {
         console.log(chalk[color](`${logPrefix}${msg}`));
     }
 
+    static suffixMap = {
+        'api': 'api',
+        'microservice': 'ms',
+        'npm': 'np',
+        'test': 'test'
+    }
+
     static async createTemplateFromName(templateName: string) {
 
+        // @ts-ignore
+        const suffix = RriCli.suffixMap[templateName];
         const projectName = await input({
             
-            message: 'Enter brief name/abbreviation (the name will be prefixed with "rri" and suffixed with "np")',
+            message: `Enter brief name/abbreviation (the name will be prefixed with "rri" and suffixed with "${suffix}")`,
             validate: (input) => {
                 if (input.startsWith("rri")) return 'name will be prefixed with rri, please choose a different name';
                 if (input.endsWith("np")) return 'name will be suffixed with api, please choose a different name';
                 return true;
             }
             
-        }).then((i) => `rri-${i.toLowerCase()}-np`);
+        }).then((i) => `rri-${i.toLowerCase()}-${suffix}`);
         
         const folderPath = `./${projectName}`;
         if (!fs.existsSync(folderPath)) {
@@ -54,6 +63,7 @@ export class RriCli {
 
         RriCli.logMsg(`next steps ####`, '       #### ', 'yellow');
         RriCli.logMsg(`cd ${templateName}`, '       ---> ', 'yellow');
+        RriCli.logMsg(`npm i && git init`, '       ---> ', 'yellow');
         RriCli.logMsg(`code .`, '       ---> ', 'yellow');
         RriCli.logMsg(`======================`, '=');
     }

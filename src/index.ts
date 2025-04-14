@@ -11,10 +11,12 @@ async function run() {
                 { name: 'API', value: 'api', description: 'Generic crud operations for integrating with an external system' },
                 { name: 'Microservice', value: 'microservice', description: 'Lightweight NodeJs program to separate concerns' },
                 { name: 'NPM Package', value: 'npm', description: 'Abstract away services to be consumed by other packages' },
+                { name: 'Test Suite', value: 'test', description: 'Stand alone template for building integration tests' },
                 { name: 'Exit', value: 'exit', description: 'Exit the program' },
                 new Separator()
             ],
         });
+        if (answer === 'exit') process.exit();
         await RriCli.createTemplateFromName(answer);
 
     } catch (error) {
