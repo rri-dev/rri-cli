@@ -1,6 +1,6 @@
 {
   "name": "rri-cli",
-  "version": "1.0.1010",
+  "version": "1.0.1012",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
   "scripts": {

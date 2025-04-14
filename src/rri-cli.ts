@@ -12,30 +12,9 @@ export class RriCli {
         console.log(chalk[color](`${logPrefix}${msg}`));
     }
 
-    static createApiTemplate = async function()  {
-        RriCli.logMsg('Creating an api template');
+    static async createTemplateFromName(templateName: string) {
 
-        const answer = await input({
-            
-            message: 'Enter brief name/abbreviation (the name will be prefixed with "rri" and suffixed with "api")',
-            validate: (input) => {
-                if (input.startsWith("rri")) return 'name will be prefixed with rri, please choose a different name';
-                if (input.endsWith("api")) return 'name will be suffixed with api, please choose a different name';
-                return true;
-            }
-            
-        }).then((i) => `rri-${i.toLowerCase()}-api`);
-
-        RriCli.createTemplateFromName(answer, 'rri-api-template');
-        
-    }
-
-    static createMicroserviceTemplate = async function() {
-        RriCli.logMsg('creating a microservice template');
-    }
-
-    static createNpmPackageTemplate = async function () {
-        const answer = await input({
+        const projectName = await input({
             
             message: 'Enter brief name/abbreviation (the name will be prefixed with "rri" and suffixed with "np")',
             validate: (input) => {
@@ -45,15 +24,6 @@ export class RriCli {
             }
             
         }).then((i) => `rri-${i.toLowerCase()}-np`);
-
-        RriCli.createTemplateFromName(answer, 'rri-npm-template');
-        RriCli.logMsg(`next steps ####`, '       #### ', 'yellow');
-        RriCli.logMsg(`cd ${answer}`, '       ---> ', 'yellow');
-        RriCli.logMsg(`code .`, '       ---> ', 'yellow');
-        RriCli.logMsg(`======================`, '=');
-    }
-
-    static createTemplateFromName(projectName: string, templateName: string) {
         
         const folderPath = `./${projectName}`;
         if (!fs.existsSync(folderPath)) {
@@ -79,7 +49,12 @@ export class RriCli {
             });
             RriCli.logMsg(`Template created at ${folderPath}`);
         } else {
-            RriCli.logMsg(`Template path '${templatePath}' does not exist.`);
+            throw new Error(`Template path '${templatePath}' does not exist.`);
         }
+
+        RriCli.logMsg(`next steps ####`, '       #### ', 'yellow');
+        RriCli.logMsg(`cd ${templateName}`, '       ---> ', 'yellow');
+        RriCli.logMsg(`code .`, '       ---> ', 'yellow');
+        RriCli.logMsg(`======================`, '=');
     }
 }
