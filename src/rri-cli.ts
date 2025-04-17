@@ -27,8 +27,8 @@ export class RriCli {
             
             message: `Enter brief name/abbreviation (the name will be prefixed with "rri" and suffixed with "${suffix}")`,
             validate: (input) => {
-                if (input.startsWith("rri")) return 'name will be prefixed with rri, please choose a different name';
-                if (input.endsWith("np")) return 'name will be suffixed with api, please choose a different name';
+                if (input.startsWith("rri")) return `name will be prefixed with rri, please choose a different name`;
+                if (input.endsWith(suffix)) return `name will be suffixed with ${suffix}, please choose a different name`;
                 return true;
             }
             
@@ -62,7 +62,7 @@ export class RriCli {
         }
 
         RriCli.logMsg(`next steps ####`, '       #### ', 'yellow');
-        RriCli.logMsg(`cd ${templateName}`, '       ---> ', 'yellow');
+        RriCli.logMsg(`cd ${projectName}`, '       ---> ', 'yellow');
         RriCli.logMsg(`npm i && git init`, '       ---> ', 'yellow');
         RriCli.logMsg(`code .`, '       ---> ', 'yellow');
         RriCli.logMsg(`======================`, '=');
