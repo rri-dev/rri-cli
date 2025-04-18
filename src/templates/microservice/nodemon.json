@@ -1,0 +1,8 @@
+
+{
+    "verbose": true,
+    "watch" : ["src/**/*"],
+    "ignore": ["test/**/*.ts", "dist/*"],
+    "ext": "ts",
+    "exec": "node ./src/scripts/makeScriptsAlphabetical.js && npm run build && node --inspect dist/src/index.js"
+}

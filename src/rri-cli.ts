@@ -2,6 +2,7 @@ import {  input } from '@inquirer/prompts';
 import fs from 'fs';
 import path from 'path';
 import chalk from 'chalk';
+import { cp } from 'fs/promises';
 
 export class RriCli {
 
@@ -34,32 +35,16 @@ export class RriCli {
             
         }).then((i) => `rri-${i.toLowerCase()}-${suffix}`);
         
-        const folderPath = `./${projectName}`;
-        if (!fs.existsSync(folderPath)) {
-            fs.mkdirSync(folderPath);
+        const destFolder = `./${projectName}`;
+        if (!fs.existsSync(destFolder)) {
+            fs.mkdirSync(destFolder);
         } else {
-            throw new Error(`Folder '${folderPath}' already exists.`);
+            throw new Error(`Folder '${destFolder}' already exists.`);
         }
-        const templatePath = path.resolve(__dirname, `../src/templates/${templateName}`);
+        const sourceFolder = path.resolve(__dirname, `../src/templates/${templateName}`);
 
-        if (fs.existsSync(templatePath)) {
-            fs.readdirSync(templatePath, { withFileTypes: true }).forEach((entry) => {
-                const srcPath = `${templatePath}/${entry.name}`;
-                const destPath = `${folderPath}/${entry.name}`;
-
-                if (entry.isDirectory()) {
-                    fs.mkdirSync(destPath, { recursive: true });
-                    fs.readdirSync(srcPath).forEach((file) => {
-                        fs.copyFileSync(`${srcPath}/${file}`, `${destPath}/${file}`);
-                    });
-                } else {
-                    fs.copyFileSync(srcPath, destPath);
-                }
-            });
-            RriCli.logMsg(`Template created at ${folderPath}`);
-        } else {
-            throw new Error(`Template path '${templatePath}' does not exist.`);
-        }
+        await cp(sourceFolder, destFolder, { recursive: true });
+        RriCli.logMsg(`Template created at ${destFolder}`);
 
         RriCli.logMsg(`next steps ####`, '       #### ', 'yellow');
         RriCli.logMsg(`cd ${projectName}`, '       ---> ', 'yellow');
