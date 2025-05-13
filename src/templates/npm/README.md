@@ -31,3 +31,26 @@ The package will need a `dist/index.js` file that includes whatever it exports. 
 
 > npm install /path/to/package.tgz
 
+## 3) Publish to NPM
+
+```shell
+npm version patch
+npm publish
+```
+
+If you just want to update the existing version published to NPM, use `npm version patch` first, otherwise you will be required to bump the version.
+
+## 4) Publish to Github
+
+### Security
+For public packages, ensure that the branches are protected from unwanted pushes.
+
+### Link Github Repo and NPM Package
+
+* in `package.json` add a `repository` field:
+```json
+"repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/rri-stripe-np.git"
+  },
+```
