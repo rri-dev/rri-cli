@@ -23,6 +23,10 @@
   "author": "RRI Dev Team",
   "license": "ISC",
   "description": "CLI program to create a starter template for APIs, Packages, or Microservices",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rri-dev/rri-cli.git"
+  },
   "dependencies": {
     "chalk": "^5.4.1",
     "inquirer": "^12.5.2",
