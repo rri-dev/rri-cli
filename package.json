@@ -3,6 +3,9 @@
   "version": "1.0.1025",
   "main": "dist/index.js",
   "types": "src/index.d.ts",
+  "engines": {
+    "node": ">=24.2.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "rm -rf dist && npm run build && node dist/index.js",
