@@ -6,6 +6,15 @@ CLI that can be used to create boilerplate templates
 * Microservices - `rri-some-ms` - Lightweight NodeJs program to separate concerns
 * NPM Packages - `rri-some-np` - Abstract away services to be consumed by other packages
 
+## Release Notes
+
+<details>
+   <summary>
+      Release notes - current
+   </summary>
+   <a href="/release_notes/2025_08_06.md">2025-08-06</a> - Add generate backdoor creds to menu.<br />
+</details>
+
 ## Installation
 
 * `npm i rri-cli -g` - install the cli globally
